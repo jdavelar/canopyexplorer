@@ -1,10 +1,10 @@
 Package: canopyexplorer
-Title: What the Package Does (One Line, Title Case)
+Title: A Helper Package for Manipulating Open Source Data from The Canopy Project
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Janette", "Avelar", , "janette.d.avelar@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-0730-1116"))
+Description: The Canopy Project is a collaborative national effort involving hundreds of organizations and schools that identifies innovative learning environments and their impact. These transformative learning environments include a diverse array of school communities that participate in an annual survey detailing the equity-centered student-focused practices the school is utilizing sitewide. Stewarded by Transcend and the Center on Reinventing Public Education (CRPE), Canopy data is updated annually and made available for public use at canopyschools.org. This package makes helper functions available for cleaning, analysis, and visualization of Canopy data commonly used by the research team.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
