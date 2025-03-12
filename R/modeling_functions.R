@@ -18,8 +18,7 @@ tag_bayes_prep <- function(
     data,
     prefix = "practices_",
     id = "school_id",
-    covariates
-) {
+    covariates) {
   # Identify relevant tag columns
   tag_cols <- grep(paste0("^", prefix), names(data), value = TRUE)
 
@@ -78,8 +77,7 @@ tag_bayes_prep <- function(
 tag_bayes <- function(
     data,
     covariates,
-    exponentiate = FALSE
-) {
+    exponentiate = FALSE) {
   if (!requireNamespace("rstanarm", quietly = TRUE)) {
     stop("The `rstanarm` package is required for this function. Please install it using `install.packages('rstanarm')`.")
   }
@@ -154,8 +152,7 @@ tag_bayes_plot <- function(
     tag = NULL,
     n = 10,
     exponentiate = FALSE,
-    theme = "crpe"
-) {
+    theme = "crpe") {
   if (!"tag" %in% names(data) || !"term" %in% names(data) || !"estimate" %in% names(data)) {
     stop("Data is not correctly formatted. Please use tag_bayes() to generate the input.")
   }
@@ -179,16 +176,6 @@ tag_bayes_plot <- function(
 
   if (nrow(plot_data) == 0) {
     stop("No valid terms to plot for this tag.")
-  }
-
-  # Exponentiate values if specified
-  if (exponentiate) {
-    plot_data <- plot_data %>%
-      dplyr::mutate(
-        estimate = exp(estimate),
-        conf.low = exp(conf.low),
-        conf.high = exp(conf.high)
-      )
   }
 
   # Create plot

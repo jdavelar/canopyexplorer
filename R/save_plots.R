@@ -31,8 +31,7 @@
 #' @export
 save_plots <- function(
     plot, file, dir = NULL,
-    fig_width = 9, fig_height = 7, formats = c("png", "svg", "eps")
-) {
+    fig_width = 9, fig_height = 7, formats = c("png", "svg", "eps")) {
   # Use default working directory if 'dir' is not specified
   dir <- dir %||% getwd()
 
@@ -49,37 +48,46 @@ save_plots <- function(
   # Save as PNG
   if ("png" %in% formats) {
     png_file <- file.path(png_dir, paste0(file, ".png"))
-    tryCatch({
-      png(filename = png_file, width = fig_width * 96, height = fig_height * 96, res = 96) # 96 dpi
-      print(plot)  # Print plot to file
-      dev.off()    # Close the file
-      message(sprintf("Successfully saved PNG file to %s", png_file))
-    }, error = function(e) {
-      message("Failed to save PNG file: ", e$message)
-    })
+    tryCatch(
+      {
+        png(filename = png_file, width = fig_width * 96, height = fig_height * 96, res = 96) # 96 dpi
+        print(plot) # Print plot to file
+        dev.off() # Close the file
+        message(sprintf("Successfully saved PNG file to %s", png_file))
+      },
+      error = function(e) {
+        message("Failed to save PNG file: ", e$message)
+      }
+    )
   }
 
   # Save as SVG
   if ("svg" %in% formats) {
     svg_file <- file.path(svg_dir, paste0(file, ".svg"))
-    tryCatch({
-      svg(filename = svg_file, width = fig_width, height = fig_height)
-      print(plot)
-      dev.off()
-      message(sprintf("Successfully saved SVG file to %s", svg_file))
-    }, error = function(e) {
-      message("Failed to save SVG file: ", e$message)
-    })
+    tryCatch(
+      {
+        svg(filename = svg_file, width = fig_width, height = fig_height)
+        print(plot)
+        dev.off()
+        message(sprintf("Successfully saved SVG file to %s", svg_file))
+      },
+      error = function(e) {
+        message("Failed to save SVG file: ", e$message)
+      }
+    )
   }
 
   # Save as EPS
   if ("eps" %in% formats) {
     eps_file <- file.path(eps_dir, paste0(file, ".eps"))
-    tryCatch({
-      ggsave(filename = eps_file, plot = plot, device = "eps", width = fig_width, height = fig_height)
-      message(sprintf("Successfully saved EPS file to %s", eps_file))
-    }, error = function(e) {
-      message("Failed to save EPS file: ", e$message)
-    })
+    tryCatch(
+      {
+        ggsave(filename = eps_file, plot = plot, device = "eps", width = fig_width, height = fig_height)
+        message(sprintf("Successfully saved EPS file to %s", eps_file))
+      },
+      error = function(e) {
+        message("Failed to save EPS file: ", e$message)
+      }
+    )
   }
 }

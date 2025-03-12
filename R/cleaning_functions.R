@@ -104,7 +104,7 @@ clean_grades <- function(data, prefix = "") {
 #' @param suburban A string indicating the name of the column that specifies if a
 #' school serves students in suburban locales.
 #'
-#'@details
+#' @details
 #' - If any binary column is not coded as `0/1`, a warning will be issued and
 #'   the value will be coerced to `NA`.
 #' - If multiple indicators are set to `1`, the function will return `"Multiple"`.

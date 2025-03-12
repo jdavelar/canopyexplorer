@@ -32,8 +32,7 @@ tag_correlations <- function(
     prefix = "practices_",
     output = c("dataframe", "table", "plot"),
     use = "pairwise.complete.obs",
-    method = "pearson"
-) {
+    method = "pearson") {
   output <- match.arg(output)
 
   # Identify relevant columns based on prefix
@@ -61,7 +60,6 @@ tag_correlations <- function(
 
   # Return table if requested
   if (output == "table") {
-
     # Convert to long format
     cor_long <- as.data.frame(as.table(cor_matrix))
     colnames(cor_long) <- c("var1", "var2", "correlation")
@@ -88,13 +86,9 @@ tag_correlations <- function(
     # Fallback to knitr or gt
     else if (requireNamespace("knitr", quietly = TRUE)) {
       return(knitr::kable(cor_long, digits = 2))
-    }
-
-    else if (requireNamespace("gt", quietly = TRUE)) {
+    } else if (requireNamespace("gt", quietly = TRUE)) {
       return(gt::gt(cor_long))
-    }
-
-    else {
+    } else {
       stop("Either `DT`, `knitr`, or `gt` must be installed to display a table.")
     }
   }
@@ -102,7 +96,6 @@ tag_correlations <- function(
   # Return plot if requested
   if (output == "plot") {
     if (requireNamespace("ggplot2", quietly = TRUE)) {
-
       # Convert to long format
       cor_long <- as.data.frame(as.table(cor_matrix))
       colnames(cor_long) <- c("var1", "var2", "correlation")
@@ -125,7 +118,6 @@ tag_correlations <- function(
         ggplot2::labs(title = "Correlation Matrix", subtitle = "Direct correlation values")
 
       print(plot)
-
     } else {
       stop("The `ggplot2` package must be installed to display a plot.")
     }
@@ -168,11 +160,14 @@ tag_efa <- function(cor_matrix, n_factors = 4, output = "table") {
   }
 
   # Run factor analysis
-  efa_result <- tryCatch({
-    psych::fa(cor_matrix, nfactors = n_factors, rotate = "varimax")
-  }, error = function(e) {
-    stop("Factor analysis failed: ", e$message)
-  })
+  efa_result <- tryCatch(
+    {
+      psych::fa(cor_matrix, nfactors = n_factors, rotate = "varimax")
+    },
+    error = function(e) {
+      stop("Factor analysis failed: ", e$message)
+    }
+  )
 
   # Extract loadings
   loadings <- as.data.frame(unclass(efa_result$loadings))

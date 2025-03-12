@@ -32,8 +32,7 @@ quick_summary <- function(
     data,
     var,
     by = NULL,
-    output = c("table", "plot")
-) {
+    output = c("table", "plot")) {
   # Extract CRPE color from the palette
   fill_color <- suppressWarnings(crpe_palette("crpe_blues")$palette(1)[1])
 
@@ -49,7 +48,6 @@ quick_summary <- function(
 
   # Handle numeric vs categorical separately
   if (is.numeric(data[[var]])) {
-
     if (output == "table") {
       if (is.null(by)) {
         # Summary stats for single numeric variable
@@ -85,7 +83,7 @@ quick_summary <- function(
         plot <- ggplot2::ggplot(data, ggplot2::aes(x = .data[[var]])) +
           ggplot2::geom_histogram(
             bins = 20,
-            fill = fill_color,  # CRPE color applied here
+            fill = fill_color, # CRPE color applied here
             color = "white"
           ) +
           ggplot2::geom_vline(
@@ -99,11 +97,10 @@ quick_summary <- function(
             title = paste("Distribution of", var)
           ) +
           theme_crpe()
-
       } else {
         # Boxplot for numeric variable grouped by categorical variable
         plot <- ggplot2::ggplot(data, ggplot2::aes(x = .data[[by]], y = .data[[var]])) +
-          ggplot2::geom_boxplot(fill = fill_color) +  # CRPE color applied here
+          ggplot2::geom_boxplot(fill = fill_color) + # CRPE color applied here
           ggplot2::labs(
             x = by,
             y = var,
@@ -113,7 +110,6 @@ quick_summary <- function(
       }
       return(plot)
     }
-
   } else {
     # Categorical variable handling
     if (output == "table") {
@@ -143,14 +139,13 @@ quick_summary <- function(
       if (is.null(by)) {
         # Bar plot for single categorical variable
         plot <- ggplot2::ggplot(data, ggplot2::aes(x = .data[[var]])) +
-          ggplot2::geom_bar(fill = fill_color) +  # CRPE color applied here
+          ggplot2::geom_bar(fill = fill_color) +
           ggplot2::labs(
             x = var,
             y = "Count",
             title = paste("Distribution of", var)
           ) +
           theme_crpe()
-
       } else {
         # Grouped bar plot for categorical variable
         plot <- ggplot2::ggplot(data, ggplot2::aes(x = .data[[var]], fill = .data[[by]])) +

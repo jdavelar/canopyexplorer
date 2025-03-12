@@ -30,7 +30,6 @@
 #'
 #' @export
 label_tags <- function(x, label_data = NULL, capitalize = "none", wrap = Inf, return_type = c("vector", "named")) {
-
   return_type <- match.arg(return_type)
 
   # Load default label data if none provided

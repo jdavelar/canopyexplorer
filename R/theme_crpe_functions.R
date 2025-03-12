@@ -61,7 +61,7 @@ theme_crpe <- function(percent_labels = FALSE) {
 #'   theme_crpe_sparse()
 #'
 #' @export
-theme_crpe_sparse = function() {
+theme_crpe_sparse <- function() {
   ggthemes::theme_few(base_size = 14, base_family = "Open Sans") +
     ggplot2::theme(
       plot.title = ggplot2::element_text(family = "Helvetica Bold", color = "black"),
