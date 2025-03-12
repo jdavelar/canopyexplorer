@@ -1,17 +1,22 @@
 Package: canopyexplorer
 Title: A Helper Package for Manipulating Open Source Data from The Canopy Project
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Janette", "Avelar", , "janette.d.avelar@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0730-1116"))
 Description: The Canopy Project is a collaborative national effort involving hundreds of organizations and schools that identifies innovative learning environments and their impact. These transformative learning environments include a diverse array of school communities that participate in an annual survey detailing the equity-centered student-focused practices the school is utilizing sitewide. Stewarded by Transcend and the Center on Reinventing Public Education (CRPE), Canopy data is updated annually and made available for public use at canopyschools.org. This package makes helper functions available for cleaning, analysis, and visualization of Canopy data commonly used by the research team.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     broom.mixed,
+    dplyr,
     ggplot2,
-    ggthemes,
-    scales
+    purrr,
+    rstanarm,
+    scales,
+    tidyr
+Suggests:
+    testthat
+LazyData: true
